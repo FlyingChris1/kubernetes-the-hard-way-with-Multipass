@@ -1,0 +1,7 @@
+packages:
+  - ca-certificates
+  - curl
+  - openssl
+
+runcmd:
+  - sudo sysctl net.bridge.bridge-nf-call-iptables=1
