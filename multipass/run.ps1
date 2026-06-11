@@ -33,22 +33,29 @@ multipass transfer 01-loadbalancer-network.yaml loadbalancer`:01-loadbalancer-ne
 multipass transfer 01-worker-1-network.yaml worker-1`:01-worker-1-network.yaml
 multipass transfer 01-worker-2-network.yaml worker-2`:01-worker-2-network.yaml
 
-Write-Host "Moving netplan yaml"
+Write-Host "Installing netplan configs"
 
-multipass exec controller-1 -- sudo cp 01-controller-1-network.yaml /etc/netplan/
-multipass exec controller-2 -- sudo cp 01-controller-2-network.yaml /etc/netplan/
-multipass exec loadbalancer -- sudo cp 01-loadbalancer-network.yaml /etc/netplan/
-multipass exec worker-1 -- sudo cp 01-worker-1-network.yaml /etc/netplan/
-multipass exec worker-2 -- sudo cp 01-worker-2-network.yaml /etc/netplan/
+multipass exec controller-1 -- sudo cp 01-controller-1-network.yaml /etc/netplan/99-kubernetes.yaml
+multipass exec controller-2 -- sudo cp 01-controller-2-network.yaml /etc/netplan/99-kubernetes.yaml
+multipass exec loadbalancer -- sudo cp 01-loadbalancer-network.yaml /etc/netplan/99-kubernetes.yaml
+multipass exec worker-1 -- sudo cp 01-worker-1-network.yaml /etc/netplan/99-kubernetes.yaml
+multipass exec worker-2 -- sudo cp 01-worker-2-network.yaml /etc/netplan/99-kubernetes.yaml
 
 Write-Host "Applying netplan"
 
 foreach ($vm in $VMs) {
     Write-Host "Applying netplan on $vm"
+
+    multipass exec $vm -- sudo netplan generate
     multipass exec $vm -- sudo netplan apply
+
     Start-Sleep -Seconds 10
 }
 
-Write-Host "Completed"
-
+Write-Host ""
+Write-Host "VM Status"
 multipass list
+
+Write-Host ""
+Write-Host "Controller-1 IPs"
+multipass exec controller-1 -- ip addr show enp0s1
