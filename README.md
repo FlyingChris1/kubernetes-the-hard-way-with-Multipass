@@ -16,7 +16,7 @@ This tutorial is for those wanting to try kubernetes-the-hard-way but using thei
 
 Kubernetes The Hard Way guides you through bootstrapping a highly available Kubernetes cluster with end-to-end encryption between components and RBAC authentication.
 
-* [Kubernetes](https://github.com/kubernetes/kubernetes) 1.23.4
+* [Kubernetes](https://github.com/kubernetes/kubernetes) 1.34.1 or higher
 * [Docker Container Runtime](https://docs.docker.com/) 20.10.13
 * [etcd](https://github.com/coreos/etcd) 3.5.2
 * [Calico](https://projectcalico.docs.tigera.io/about/about-calico) 3.22
