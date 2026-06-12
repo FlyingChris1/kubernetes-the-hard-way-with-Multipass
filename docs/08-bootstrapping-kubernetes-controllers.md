@@ -56,7 +56,7 @@ Install the Kubernetes binaries:
 The instance internal IP address will be used to advertise the API Server to members of the cluster. Retrieve the internal IP address for the current compute instance:
 
 ```
-INTERNAL_IP=$(ip addr show eth0 | grep "inet " | awk '{print $2}' | cut -d / -f 1 | head -1)
+INTERNAL_IP=$(ip addr show enp0s1 | grep "inet " | awk '{print $2}' | cut -d / -f 1 | head -1)
 ```
 
 Verify it is set
