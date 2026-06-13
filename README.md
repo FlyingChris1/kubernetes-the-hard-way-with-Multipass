@@ -4,6 +4,8 @@ Build a complete Kubernetes cluster from scratch on your local machine using Mul
 
 This project is based on the concepts from Kubernetes The Hard Way. It gives you the option to set up your cluster manually or automate the repetitive steps while preserving the educational value of manually bootstrapping Kubernetes components.
 
+> Note - This repo only work for MacOS devices with an M1/2/3/4/5 chip due to the ARM64 architecure
+
 The result is a fully functional Kubernetes cluster consisting of:
 
 - 1 Control Plane Node (`controller-1`)
